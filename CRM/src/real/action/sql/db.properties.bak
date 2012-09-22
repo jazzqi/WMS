@@ -1,0 +1,7 @@
+
+#=====================lutao.mysql=================
+driver=com.mysql.jdbc.Driver
+url=jdbc:mysql://localhost:3309/aicdata
+user=root
+password=w8f9
+
