@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry excluding="AddOperatorPanel.java" kind="src" path="src"/>
+	<classpathentry kind="lib" path="C:/Program Files/MySQL/MySQL Server 5.5/jdbc/mysql-connector-java-5.1.18-bin.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
