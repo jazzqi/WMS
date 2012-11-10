@@ -3,6 +3,7 @@ package real.action.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import real.action.sql.ConnectionFactory;
 
@@ -26,6 +27,14 @@ public class LoginDao {
 			// 因为使用ConnectionFactory工厂类维护一个线程安全的connection, 执行完成或发生异常时并不需要关闭conn!
 			e.printStackTrace();
 			return false;
+		} finally {
+			try {
+				rs.close();
+				stm.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 }

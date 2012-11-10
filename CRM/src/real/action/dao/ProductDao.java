@@ -23,6 +23,8 @@ public class ProductDao {
 		String sql2 = "select prod_id from products order by prod_id asc";
 		String ids[] = null;
 		Connection conn = null;
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
 		try {
 			try {
 				conn = ConnectionFactory.getConnection();
@@ -45,6 +47,14 @@ public class ProductDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
+		} finally {
+			try {
+				rs.close();
+				stm.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -69,10 +79,12 @@ public class ProductDao {
 			sql2 = sql2 + " and sup_id" + supidCompare + supid;
 		Connection conn2 = null;
 		ProductData products[] = null;
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
 		try {
 			conn2 = ConnectionFactory.getConnection();
-			PreparedStatement stm2 = conn2.prepareStatement(sql2);
-			ResultSet rs = stm2.executeQuery();
+			pstm = conn2.prepareStatement(sql2);
+			rs = pstm.executeQuery();
 			int i = 0;
 			rs.last();
 			products = new ProductData[rs.getRow()];
@@ -92,13 +104,21 @@ public class ProductDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
+		} finally {
+			try {
+				rs.close();
+				pstm.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 
 	public static ProductData getProductbyID(int id) {
 		String sql = "select * from products where prod_id=?";
 		Connection conn2 = null;
-		PreparedStatement pstm;
+		PreparedStatement pstm = null;
 		try {
 			try {
 				conn2 = ConnectionFactory.getConnection();
@@ -121,6 +141,13 @@ public class ProductDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
+		} finally {
+			try {
+				pstm.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 
 	}
@@ -128,7 +155,7 @@ public class ProductDao {
 	public static boolean modifyProduct(ProductData product) {
 		String sql2 = "update products set prod_name=?, price=?, type=?, quantity=?, sup_id=? where prod_id=?";
 		Connection conn2 = null;
-		PreparedStatement pstm;
+		PreparedStatement pstm = null;
 		try {
 			try {
 				conn2 = ConnectionFactory.getConnection();
@@ -152,13 +179,20 @@ public class ProductDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;
+		} finally {
+			try {
+				pstm.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 
 	public static boolean deleteProduct(ProductData product) {
 		String sql2 = "delete from products where prod_id=?";
 		Connection conn2 = null;
-		PreparedStatement pstm;
+		PreparedStatement pstm = null;
 		try {
 			try {
 				conn2 = ConnectionFactory.getConnection();
@@ -176,6 +210,13 @@ public class ProductDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;
+		} finally {
+			try {
+				pstm.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -198,6 +239,13 @@ public class ProductDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;
+		} finally {
+			try {
+				pstm.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 
